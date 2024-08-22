@@ -1,9 +1,17 @@
-import { Text, View } from "react-native";
-
+import { Image, ScrollView, Text, View } from "react-native";
+import { Link } from "expo-router";
+import {images} from "../constants"
+import { SafeAreaView } from "react-native-safe-area-context";
 export default function Index() {
   return (
-    <View className= "flex-1 bg-zinc-100 flex items-center justify-center">
-      <Text className="font-pblack">this screen.</Text>
-    </View>
+    <SafeAreaView className="bg-primary h-full">
+      <ScrollView contentContainerStyle={{height:'100%'}}>
+        <View className="w-full h-full justify-center items-center px-4">
+          <Image source={images.logo}/>
+
+          
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
