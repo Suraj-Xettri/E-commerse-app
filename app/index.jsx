@@ -1,7 +1,9 @@
 import { Image, ScrollView, Text, View } from "react-native";
 import { Link } from "expo-router";
+import CustomButtons from "../components/CustomButtons"
 import {images} from "../constants"
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
 export default function Index() {
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -16,12 +18,15 @@ export default function Index() {
               Discover Endless Possibilities with <Text className="text-secondary-200 font-pbold">Aora</Text>
             </Text>
 
-            <Text className="text-gray-100 font-pmedium text-center mt-4">Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Aora</Text>
+            <Text className="text-gray-100 font-pmedium text-center mt-6">Where Creativity Meets Innovation: Embark on a Journey of Limitless Exploration with Aora</Text>
           </View>
 
+          <CustomButtons title="Lets Go" handlePress={()=>{}} containerStyles="w-full mt-10"/>
           
         </View>
       </ScrollView>
+
+      <StatusBar backgroundColor="#161622" style="light"/>
     </SafeAreaView>
   );
 }
