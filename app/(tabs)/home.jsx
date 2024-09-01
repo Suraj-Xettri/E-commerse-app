@@ -1,13 +1,15 @@
 import { View, Text, FlatList, Image } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import {images} from "../../constants"
+import { images } from "../../constants";
+import Trending from "../../components/Trending";
+import EmptyState from "../../components/EmptyState";
 import SearchInput from "../../components/SearchInput";
 const Home = () => {
   return (
-    <SafeAreaView className="bg-primary">
+    <SafeAreaView className="bg-primary h-full">
       <FlatList
-        data={[{ id: 1 }, { id: 2 }]}
+        data={[]}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <Text className="text-3xl text-white">{item.id}</Text>
@@ -24,16 +26,25 @@ const Home = () => {
                 </Text>
               </View>
               <View className="mt-1.5">
-                <Image source={images.logoSmall} resizeMode="contain" className ="w-9 h-10" />
+                <Image
+                  source={images.logoSmall}
+                  resizeMode="contain"
+                  className="w-9 h-10"
+                />
               </View>
             </View>
 
-            <SearchInput/>
+            <SearchInput />
             <View className="w-full flex-1 pt-5 pb-8">
-              <Text className="text-gray-100 text-lg mb-3 font-pregular">Latest Videos</Text>
+              <Text className="text-gray-100 text-lg mb-3 font-pregular">
+                Latest Videos
+              </Text>
+
+              <Trending posts={[] ?? []} />
             </View>
           </View>
         )}
+        ListEmptyComponent={() => <EmptyState title = "No videos Found" subtitle="Be the first one to upload the video"/>}
       />
     </SafeAreaView>
   );
