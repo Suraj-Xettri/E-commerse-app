@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../constants";
 import FormField from "../../components/FormField";
 import CustomButtons from "../../components/CustomButtons"
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 
 const SignIn = () => {
   const [form, setForm] = useState({
@@ -13,7 +13,7 @@ const SignIn = () => {
   });
 
   const Submit = () => {
-
+    router.replace("/home");
   }
 
   return (
