@@ -44,7 +44,7 @@ const Home = () => {
           <PostsCards items = {item}/>
         )}
         ListHeaderComponent={() => (
-          <View className="my-6 px-4 space-y-6">
+          <View className="my-6 px-4">
             <View className="justify-between items-start flex-row mb-6">
               <View>
                 <Text className="font-pmedium text-xm text-gray-100">
@@ -66,7 +66,7 @@ const Home = () => {
             <SearchInput />
             <View className="w-full flex-1 pt-5 pb-8">
               <Text className="text-gray-100 text-lg mb-3 font-pregular">
-                Latest Videos
+                Latest Posts
               </Text>
 
               <Trending posts={posts ?? []} />
