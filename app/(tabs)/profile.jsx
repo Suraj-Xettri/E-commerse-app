@@ -1,15 +1,24 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons } from "../../constants";
 import CustomButtons from "../../components/CustomButtons";
 const Profile = () => {
+  const [show, setShow] = useState(true);
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList
         data={[{ id: 1 }]}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Text className="text-white">Posts Here</Text>}
+        renderItem={({ item }) => (
+          <View>
+            {show ? (
+              <Text className="text-white"> Post </Text>
+            ) : (
+              <Text className="text-white"> Saved </Text>
+            )}
+          </View>
+        )}
         ListHeaderComponent={() => (
           <View>
             <View className="space-y-2 px-5">
@@ -45,13 +54,45 @@ const Profile = () => {
               </View>
             </View>
 
-            <View className="flex-row">
-              <CustomButtons
-                title={"Edit Profile"}
-                handlePress={() => router.push("./edit")}
-                containerStyles="w-full my-5 bg-zinc-600"
-                textStyles = "text-gray-100"
-              />
+            <View className="flex-row my-4 pl-4 pr-2 space-x-3 items-center">
+              <TouchableOpacity
+                onPress={() => router.push("./Edit")}
+                className={`bg-zinc-700 flex-1 rounded-xl py-3 justify-center items-center"
+                `}
+              >
+                <Text
+                  className={`text-sm text-gray-100 text-center font-psemibold`}
+                >
+                  Edit Profile
+                </Text>
+              </TouchableOpacity>
+              <Image source={icons.plus} className="w-10 h-10" />
+            </View>
+
+            <View className="flex-row space-x-2 px-4">
+              <TouchableOpacity
+                onPress={() => setShow(true)}
+                className={`bg-zinc-700 flex-1 rounded-xl py-2 justify-center items-center"
+                `}
+              >
+                <Text
+                  className={`text-sm text-gray-100 text-center font-psemibold`}
+                >
+                  Posts
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => setShow(false)}
+                className={`bg-zinc-700 flex-1 rounded-xl justify-center items-center"
+                `}
+              >
+                <Text
+                  className={`text-sm text-gray-100 text-center font-psemibold`}
+                >
+                  Saved
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         )}
