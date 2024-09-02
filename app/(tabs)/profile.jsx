@@ -20,9 +20,9 @@ const Profile = () => {
           </View>
         )}
         ListHeaderComponent={() => (
-          <View>
+          <View className='mt-3'>
             <View className="space-y-2 px-5">
-              <View className="flex-row items-center justify-between mt-10 space-y-2">
+              <View className="flex-row items-center justify-between mt-7 space-y-2">
                 <Image
                   source={icons}
                   className="w-16 h-16 rounded-full bg-white"
