@@ -1,10 +1,17 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { icons } from "../../constants";
-import CustomButtons from "../../components/CustomButtons";
+import { icons } from "../../../constants";
+import { useLocalSearchParams } from "expo-router";
 const Profile = () => {
+  const { id } = useLocalSearchParams();
   const [show, setShow] = useState(true);
+  if (!id)
+    return (
+      <SafeAreaView className='h-full bg-primary justify-center items-center'>
+        <Text className='text-white font-psemibold text-xl'>No user Found</Text>
+      </SafeAreaView>
+    );
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList
@@ -20,7 +27,7 @@ const Profile = () => {
           </View>
         )}
         ListHeaderComponent={() => (
-          <View className='mt-3'>
+          <View className="mt-3">
             <View className="space-y-2 px-5">
               <View className="flex-row items-center justify-between mt-7 space-y-2">
                 <Image

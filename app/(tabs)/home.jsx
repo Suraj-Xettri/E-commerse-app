@@ -2,6 +2,7 @@ import { View, Text, FlatList,RefreshControl, Image } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../../constants";
+import { Link } from "expo-router";
 import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
 import SearchInput from "../../components/SearchInput";
