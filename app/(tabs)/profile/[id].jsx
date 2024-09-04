@@ -6,6 +6,28 @@ import { useLocalSearchParams } from "expo-router";
 const Profile = () => {
   const { id } = useLocalSearchParams();
   const [show, setShow] = useState(true);
+  const [profileUser, setProfileUser] = useState([]);
+  const [loading, setLoding] = useState(false);
+  
+  const profileDetails = async () => {
+    setLoding(true);
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/users/profile/${id}`
+      );
+
+      setProfileUser(response?.data?.userProfile);
+      setLoding(false);
+    } catch (error) {
+      setLoding(false);
+      console.error("Error fetching profile details:", error);
+    }
+  };
+
+
+  useEffect(() => {
+    profileDetails();
+  }, [id]);
   if (!id)
     return (
       <SafeAreaView className='h-full bg-primary justify-center items-center'>
@@ -15,12 +37,12 @@ const Profile = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
       <FlatList
-        data={[{ id: 1 }]}
+        data={[{ profileUser }]}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <View>
             {show ? (
-              <Text className="text-white"> Post </Text>
+              <Text className="text-white"> {profileUser.username} </Text>
             ) : (
               <Text className="text-white"> Saved </Text>
             )}
