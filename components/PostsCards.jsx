@@ -40,7 +40,7 @@ const PostsCards = ({ items }) => {
 
       <View className="w-full h-60 rounded-xl border border-secondary-100 mt-3 justify-center items-center">
         <Image
-          source={items.image}
+          source={{uri:items.image}}
           className="w-full h-full mt-3 rounded-xl"
           resizeMode="cover"
         />
