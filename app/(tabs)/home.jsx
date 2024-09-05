@@ -37,7 +37,7 @@ const Home = () => {
     setRefresh(false)
   }
   return (
-    <SafeAreaView className="bg-primary h-full">
+    <SafeAreaView className="bg-black h-full">
       <FlatList
         data={posts}
         keyExtractor={(item) => item._id}
@@ -51,7 +51,7 @@ const Home = () => {
                 <Text className="font-pmedium text-xm text-gray-100">
                   Welcome Back
                 </Text>
-                <Text className="font-psemibold text-2xl text-white">
+                <Text className="font-psemibold text-2xl text-primary">
                   Suraj Thapa
                 </Text>
               </View>
@@ -66,7 +66,7 @@ const Home = () => {
 
             <SearchInput />
             <View className="w-full flex-1 pt-5 pb-8">
-              <Text className="text-gray-100 text-lg mb-3 font-pregular">
+              <Text className="text-primary text-lg mb-3 font-pregular">
                 Latest Posts
               </Text>
 

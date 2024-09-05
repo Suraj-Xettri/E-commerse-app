@@ -9,7 +9,7 @@ const SearchInput = ({
   const [showPassword, setshowPassword] = useState(false);
 
   return (
-    <View className="border-2 space-x-4 px-2 flex-row items-center border-black-200 w-full h-16 bg-black-100 rounded-2xl focus:border-secondary">
+    <View className="border-2 space-x-4 px-2 flex-row items-center border-secondary w-full h-16 bg-secondary rounded-2xl focus:border-primary">
       <TextInput
         className="text-base flex-1 mt-0.5 font-pregular text-white"
         value={value}

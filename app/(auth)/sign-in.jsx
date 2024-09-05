@@ -17,7 +17,7 @@ const SignIn = () => {
   }
 
   return (
-    <SafeAreaView className="bg-primary h-full">
+    <SafeAreaView className="bg-black h-full">
       <ScrollView>
         <View className="w-full min-h-[90vh] items-center justify-center px-4 my-6">
           <Image
@@ -27,7 +27,7 @@ const SignIn = () => {
           />
 
           <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">
-            Log in to Aora
+            Log in to AniHub
           </Text>
 
           <FormField
@@ -51,7 +51,7 @@ const SignIn = () => {
               Don't have an account?
             </Text>
 
-            <Link href={"/sign-up"} className="text-lg font-psemibold text-secondary">Sign Up</Link>
+            <Link href={"/sign-up"} className="text-lg font-psemibold text-primary">Sign Up</Link>
           </View>
         </View>
       </ScrollView>

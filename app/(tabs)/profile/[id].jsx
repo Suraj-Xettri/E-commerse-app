@@ -32,7 +32,7 @@ const Profile = () => {
 
   if (!id)
     return (
-      <SafeAreaView className="h-full bg-primary justify-center items-center">
+      <SafeAreaView className="h-full bg-black justify-center items-center">
         <Text className="text-white font-psemibold text-xl">No user Found</Text>
       </SafeAreaView>
     );
@@ -70,7 +70,7 @@ const Profile = () => {
             </View>
 
             <View className="">
-              <Text className="text-sm font-pmedium text-white">
+              <Text className="text-sm font-pmedium text-primary">
                 {profileUser.username}
               </Text>
               <Text className="text-xs font-pregular text-zinc-100">
@@ -82,7 +82,7 @@ const Profile = () => {
           <View className="flex-row my-4 pl-4 pr-2 space-x-3 items-center">
             <TouchableOpacity
               onPress={() => router.push("./Edit")}
-              className={`bg-zinc-700 flex-1 rounded-xl py-3 justify-center items-center"
+              className={`bg-secondary flex-1 rounded-xl py-3 justify-center items-center"
                 `}
             >
               <Text
@@ -97,7 +97,7 @@ const Profile = () => {
           <View className="flex-row space-x-2 px-4">
             <TouchableOpacity
               onPress={() => setShow(true)}
-              className={`bg-zinc-700 flex-1 rounded-xl py-2 justify-center items-center"
+              className={`bg-secondaryflex-1 rounded-xl py-2 justify-center items-center"
                 `}
             >
               <Text

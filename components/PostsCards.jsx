@@ -21,13 +21,13 @@ const PostsCards = ({ items }) => {
 
           <View className="justify-center flex-1 ml-3 gap-y-1">
             <Text
-              className="text-white font-psemibold text-sm"
+              className="text-zinc-300 font-psemibold text-sm"
               numberOfLines={1}
             >
               {items.title}
             </Text>
 
-            <Text className="text-gray-100 text-xs font-pregular">
+            <Text className="text-primary text-xs font-pregular">
               {items.author.username}
             </Text>
           </View>
