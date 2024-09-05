@@ -45,7 +45,7 @@ const Home = () => {
           <PostsCards items = {item}/>
         )}
         ListHeaderComponent={() => (
-          <View className="my-6 px-4">
+          <View className="my-6 px-2">
             <View className="justify-between items-start flex-row mb-6">
               <View>
                 <Text className="font-pmedium text-xm text-gray-100">

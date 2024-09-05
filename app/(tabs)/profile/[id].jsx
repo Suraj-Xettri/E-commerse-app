@@ -37,13 +37,13 @@ const Profile = () => {
       </SafeAreaView>
     );
   return (
-    <SafeAreaView className="bg-primary h-full">
+    <SafeAreaView className="bg-black h-full">
       <ScrollView>
         <View className="mt-3">
-          <View className="space-y-2 px-5">
+          <View className="space-y-2 px-2">
             <View className="flex-row items-center justify-between mt-7 space-y-2">
               <Image
-                source={{ uri: profileUser.profilePic }}
+                source={{ uri: profileUser?.profilePic }}
                 className="w-16 h-16 rounded-full bg-white"
                 resizeMode="contain"
               />
@@ -79,7 +79,7 @@ const Profile = () => {
             </View>
           </View>
 
-          <View className="flex-row my-4 pl-4 pr-2 space-x-3 items-center">
+          <View className="flex-row my-4 px-2 space-x-3 items-center">
             <TouchableOpacity
               onPress={() => router.push("./Edit")}
               className={`bg-secondary flex-1 rounded-xl py-3 justify-center items-center"
@@ -94,10 +94,10 @@ const Profile = () => {
             <Image source={icons.plus} className="w-10 h-10" />
           </View>
 
-          <View className="flex-row space-x-2 px-4">
+          <View className="flex-row space-x-2 px-2">
             <TouchableOpacity
               onPress={() => setShow(true)}
-              className={`bg-secondaryflex-1 rounded-xl py-2 justify-center items-center"
+              className={`bg-secondary flex-1 rounded-xl py-2 justify-center items-center"
                 `}
             >
               <Text
@@ -109,7 +109,7 @@ const Profile = () => {
 
             <TouchableOpacity
               onPress={() => setShow(false)}
-              className={`bg-zinc-700 flex-1 rounded-xl justify-center items-center"
+              className={`bg-secondary flex-1 rounded-xl justify-center items-center"
                 `}
             >
               <Text
