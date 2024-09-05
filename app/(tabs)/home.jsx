@@ -21,8 +21,6 @@ const Home = () => {
       setLoading(true)
       const posts = await axios.get("http://192.168.1.121:3000/posts");
       setPosts(posts.data);
-
-      console.log(posts.data)
       setLoading(false)
     } catch (error) {
       console.log("Failed to fetch posts", error);
