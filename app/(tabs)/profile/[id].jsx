@@ -120,14 +120,15 @@ const Profile = () => {
             </TouchableOpacity>
           </View>
         </View>
-
-        {profileUser?.post?.length > 0 ? (
-          profileUser.post.map((post, index) => (
-            <ProfileCards key={index} items={post} />
-          ))
-        ) : (
-          <Text className="text-white">No posts available</Text>
-        )}
+        <View className='flex-row flex-wrap'>
+          {profileUser?.post?.length > 0 ? (
+            profileUser.post.map((post, index) => (
+              <ProfileCards key={index} items={post} />
+            ))
+          ) : (
+            <Text className="text-white">No posts available</Text>
+          )}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

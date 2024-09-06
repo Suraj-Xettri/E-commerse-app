@@ -21,11 +21,10 @@ const SignIn = () => {
     }));
   };
 
-  const Submit = async (e) => {
-    e.preventDefault();
+  const Submit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/users/login",
+        "http://192.168.1.121:3000/users/login", // Replace 'localhost' with your computer's IP address
         form,
         {
           headers: {
@@ -35,13 +34,18 @@ const SignIn = () => {
         }
       );
       if (response.data.success) {
-        dispatch(setAuthUser(response.data.activeUser));
         router.replace("/home");
       } else {
         setError(response.data.message);
       }
     } catch (error) {
-      setError(response.data.message);
+      if (error.response && error.response.data) {
+        setError(error.response.data.message);
+      } else {
+        setError("An unexpected error occurred.");
+      }
+    } finally {
+      setForm({ email: "", password: "" });
     }
   };
 
@@ -60,19 +64,19 @@ const SignIn = () => {
           </Text>
 
           <FormField
-            title="Email"
+            title="email"
             value={form.email}
             handleChangeText={(e) => handleInput("email", e)}
             otherStyle="mt-7"
             keyBoardType="email-address"
           />
           <FormField
-            title="Password"
+            title="password"
             value={form.password}
             handleChangeText={(e) => handleInput("password", e)}
             otherStyle="mt-7"
           />
-          {error && <Text>{error}</Text>}
+          {error && <Text className="text-red-600 mt-3">{error}</Text>}
 
           <CustomButtons
             title="Sign in"
