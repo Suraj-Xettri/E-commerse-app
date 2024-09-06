@@ -9,6 +9,7 @@ import axios from "axios";
 
 const SignIn = () => {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -23,6 +24,7 @@ const SignIn = () => {
 
   const Submit = async () => {
     try {
+      setLoading(true);
       const response = await axios.post(
         "http://192.168.1.121:3000/users/login", // Replace 'localhost' with your computer's IP address
         form,
@@ -38,12 +40,15 @@ const SignIn = () => {
       } else {
         setError(response.data.message);
       }
+      setLoading(false);
     } catch (error) {
       if (error.response && error.response.data) {
         setError(error.response.data.message);
       } else {
         setError("An unexpected error occurred.");
       }
+
+      setLoading(false);
     } finally {
       setForm({ email: "", password: "" });
     }
@@ -79,8 +84,9 @@ const SignIn = () => {
           {error && <Text className="text-red-600 mt-3">{error}</Text>}
 
           <CustomButtons
-            title="Sign in"
+            title={loading? "Signing In .":"Sign in"}
             handlePress={Submit}
+            isLoading={loading}
             containerStyles="w-full mt-10"
           />
 

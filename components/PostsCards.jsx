@@ -9,7 +9,7 @@ const PostsCards = ({ items }) => {
         <View className="justify-center items-center flex-row flex-1">
           <View className="w-[46px] h-[46px] rounded-lg border justify-center items-center p-0.5">
             <Image
-              source={items.author.profilePicture}
+              source={{uri: items.author.profilePicture}}
               resizeMode="cover"
               className="w-full h-full rounded-lg"
             />
