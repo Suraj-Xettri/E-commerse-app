@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { icons } from "../../../constants";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import axios from "axios";
 import ProfileCards from "../../../components/ProfileCards";
 const Profile = () => {
@@ -71,7 +71,7 @@ const Profile = () => {
 
             <View className="">
               <Text className="text-sm font-pmedium text-primary">
-                {profileUser.username}
+                {profileUser?.username}
               </Text>
               <Text className="text-xs font-pregular text-zinc-100">
                 "Die with Memories, Not Dreams"
