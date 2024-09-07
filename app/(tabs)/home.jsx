@@ -17,7 +17,6 @@ const Home = () => {
 
   const {user} = useSelector((store) => store.auth);
 
-  console.log(user.username)
   const getPost = async () => {
     try {
       setLoading(true);

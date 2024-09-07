@@ -1,12 +1,15 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { icons } from "../../../constants";
-import { router, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import axios from "axios";
+import { useFocusEffect } from "@react-navigation/native";
 import ProfileCards from "../../../components/ProfileCards";
+import { useSelector } from "react-redux";
+
 const Profile = () => {
   const { id } = useLocalSearchParams();
+  const { user } = useSelector((slice) => slice.auth);
   const [show, setShow] = useState(true);
   const [profileUser, setProfileUser] = useState([]);
   const [loading, setLoding] = useState(false);
@@ -15,7 +18,7 @@ const Profile = () => {
     setLoding(true);
     try {
       const response = await axios.get(
-        `http://192.168.1.121:3000/users/profile/${id}`
+        `http://192.168.1.121:3000/users/profile/${id ? id : user._id}`
       );
 
       setProfileUser(response?.data?.userProfile);
@@ -28,9 +31,9 @@ const Profile = () => {
 
   useEffect(() => {
     profileDetails();
-  }, [id]);
+  }, [id, user._id]);
 
-  if (!id)
+  if (!id && !user._id)
     return (
       <SafeAreaView className="h-full bg-black justify-center items-center">
         <Text className="text-white font-psemibold text-xl">No user Found</Text>
@@ -80,18 +83,31 @@ const Profile = () => {
           </View>
 
           <View className="flex-row my-4 px-2 space-x-3 items-center">
-            <TouchableOpacity
+            {user._id === profileUser._id ? (
+              <TouchableOpacity
+                onPress={() => router.push("./Edit")}
+                className={`bg-secondary flex-1 rounded-xl py-3 justify-center items-center"
+                `}
+              >
+                <Text
+                  className={`text-sm text-gray-100 text-center font-psemibold`}
+                >
+                  Edit Profile
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
               onPress={() => router.push("./Edit")}
               className={`bg-secondary flex-1 rounded-xl py-3 justify-center items-center"
-                `}
+              `}
             >
               <Text
                 className={`text-sm text-gray-100 text-center font-psemibold`}
               >
-                Edit Profile
+                Follow
               </Text>
             </TouchableOpacity>
-            <Image source={icons.plus} className="w-10 h-10" />
+            )}
           </View>
 
           <View className="flex-row space-x-2 px-2">
@@ -120,7 +136,7 @@ const Profile = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View className='flex-row flex-wrap'>
+        <View className="flex-row flex-wrap">
           {profileUser?.post?.length > 0 ? (
             profileUser.post.map((post, index) => (
               <ProfileCards key={index} items={post} />

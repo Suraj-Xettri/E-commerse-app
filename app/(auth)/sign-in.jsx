@@ -13,8 +13,8 @@ const SignIn = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    email: "",
-    password: "",
+    email: "surajthapart@gmail.com",
+    password: "abcd",
   });
 
   const dispatch = useDispatch();
