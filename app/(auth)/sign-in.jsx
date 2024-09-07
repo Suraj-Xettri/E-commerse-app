@@ -6,6 +6,8 @@ import FormField from "../../components/FormField";
 import CustomButtons from "../../components/CustomButtons";
 import { Link, router } from "expo-router";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setAuthUser } from "../../redux/authSlice";
 
 const SignIn = () => {
   const [error, setError] = useState("");
@@ -14,6 +16,8 @@ const SignIn = () => {
     email: "",
     password: "",
   });
+
+  const dispatch = useDispatch();
 
   const handleInput = (name, value) => {
     setForm((prevData) => ({
@@ -36,6 +40,7 @@ const SignIn = () => {
         }
       );
       if (response.data.success) {
+        dispatch(setAuthUser(response.data.activeUser));
         router.replace("/home");
       } else {
         setError(response.data.message);
@@ -84,7 +89,7 @@ const SignIn = () => {
           {error && <Text className="text-red-600 mt-3">{error}</Text>}
 
           <CustomButtons
-            title={loading? "Signing In .":"Sign in"}
+            title={loading ? "Signing In ." : "Sign in"}
             handlePress={Submit}
             isLoading={loading}
             containerStyles="w-full mt-10"

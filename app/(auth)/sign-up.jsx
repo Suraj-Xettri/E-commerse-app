@@ -7,6 +7,8 @@ import CustomButtons from "../../components/CustomButtons";
 import { Link, router } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setAuthUser } from "../../redux/authSlice";
 const SignUp = () => {
   const [image, setImage] = useState(null);
   const [error, setError] = useState("");
@@ -16,6 +18,8 @@ const SignUp = () => {
     email: "",
     password: "",
   });
+
+  const dispatch = useDispatch()
 
   const handleInput = (name, value) => {
     setForm((prevData) => ({
@@ -70,6 +74,7 @@ const SignUp = () => {
       );
 
       if (response.data.success) {
+        dispatch(setAuthUser(response.data.activeUser))
         router.replace("/home");
       } else {
         setError(
