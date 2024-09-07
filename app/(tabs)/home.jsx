@@ -28,9 +28,64 @@ const Home = () => {
     }
   };
 
+ 
+  const follow = async (user_id) => {
+    try {
+      const response = await axios.post(
+        `http://192.168.1.121:3000/users/follow/${user_id}`,
+        {},
+        { withCredentials: true }
+      );
+      if(response.data.success){
+        handleOption();
+      }else{
+        console.log(response.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const unfollow = async (user_id) => {
+    try {
+      const response = await axios.post(
+        `http://192.168.1.121:3000/users/unfollow/${user_id}`,
+        {},
+        { withCredentials: true }
+      );
+      if (response.data.success) {
+        console.log("Success");
+        handleOption();
+      } else {
+        console.log("failed");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const Delete = async (post_id) => {
+    try {
+      const response = await axios.post(
+        `http://192.168.1.121:3000/posts/delete/${post_id}`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      if (response.data.success) {
+        handleOption();
+      } else {
+        console.log(response.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   useEffect(() => {
     getPost();
-  }, []);
+  }, [follow, unfollow, Delete]);
+
 
   const onRefresh = async () => {
     setRefresh(true);
@@ -42,7 +97,7 @@ const Home = () => {
       <FlatList
         data={posts}
         keyExtractor={(item) => item._id}
-        renderItem={({ item }) => <PostsCards items={item} />}
+        renderItem={({ item }) => <PostsCards Delete= {Delete} follow={follow} unfollow={unfollow} user= {user} items={item} />}
         ListHeaderComponent={() => (
           <View className="my-6 px-2">
             <View className="justify-between items-start flex-row mb-6">
