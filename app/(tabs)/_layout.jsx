@@ -1,5 +1,6 @@
 import { View, Text, Image } from "react-native";
 import { Tabs } from "expo-router";
+import { useSelector } from "react-redux";
 
 import { icons } from "../../constants";
 const TabIcon = ({ icon, color, name, focused }) => {
@@ -25,6 +26,8 @@ const TabIcon = ({ icon, color, name, focused }) => {
 };
 
 const TabsLayout = () => {
+  const { user } = useSelector((slice) => slice.auth);
+
   return (
     <>
       <Tabs
@@ -75,6 +78,12 @@ const TabsLayout = () => {
           name="profile/[id]"
           options={{
             title: "Profile",
+            href: {
+              pathname: "profile/[id]",
+              params: {
+                id: user._id,
+              },
+            },
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <TabIcon

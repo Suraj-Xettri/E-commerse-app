@@ -1,11 +1,12 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams } from "expo-router";
 import axios from "axios";
-import { useFocusEffect } from "@react-navigation/native";
 import ProfileCards from "../../../components/ProfileCards";
 import { useSelector } from "react-redux";
+
+
 
 const Profile = () => {
   const { id } = useLocalSearchParams();
@@ -18,7 +19,7 @@ const Profile = () => {
     setLoding(true);
     try {
       const response = await axios.get(
-        `http://192.168.1.121:3000/users/profile/${id ? id : user._id}`
+        `http://192.168.1.121:3000/users/profile/${id}`
       );
 
       setProfileUser(response?.data?.userProfile);
