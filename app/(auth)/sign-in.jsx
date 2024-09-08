@@ -42,6 +42,7 @@ const SignIn = () => {
       if (response.data.success) {
         dispatch(setAuthUser(response.data.activeUser));
         router.replace("/home");
+        setForm({ email: "", password: "" });
       } else {
         setError(response.data.message);
       }
@@ -54,8 +55,6 @@ const SignIn = () => {
       }
 
       setLoading(false);
-    } finally {
-      setForm({ email: "", password: "" });
     }
   };
 

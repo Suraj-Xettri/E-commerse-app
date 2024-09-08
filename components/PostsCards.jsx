@@ -107,6 +107,7 @@ const PostsCards = ({
             </View>
           </View>
         )}
+        
       </View>
 
       <View className="w-full h-60 rounded-xl border border-secondary-100 mt-3 justify-center items-center">
