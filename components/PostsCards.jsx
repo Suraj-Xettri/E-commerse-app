@@ -2,16 +2,18 @@ import { View, TouchableOpacity, Text, Image } from "react-native";
 import React, { useState } from "react";
 import { Link } from "expo-router";
 import { icons } from "../constants";
-import axios from "axios";
-const PostsCards = ({ items, user,follow, unfollow,Delete }) => {
+const PostsCards = ({
+  items,
+  user,
+  follow,
+  option,
+  handleOption,
+  unfollow,
+  Delete,
+}) => {
+
   const handleLike = () => {};
   const handleComment = () => {};
-  const [option, setOption] = useState(false);
-
-  const handleOption = () => {
-    setOption((p) => !p);
-  };
-
 
   return (
     <View className="flex-col items-center px-2 mb-10">

@@ -15,8 +15,12 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const {user} = useSelector((store) => store.auth);
+  const { user } = useSelector((store) => store.auth);
+  const [option, setOption] = useState(false);
 
+  const handleOption = () => {
+    setOption((p) => !p);
+  };
   const getPost = async () => {
     try {
       setLoading(true);
@@ -28,7 +32,6 @@ const Home = () => {
     }
   };
 
- 
   const follow = async (user_id) => {
     try {
       const response = await axios.post(
@@ -36,9 +39,10 @@ const Home = () => {
         {},
         { withCredentials: true }
       );
-      if(response.data.success){
+      if (response.data.success) {
         handleOption();
-      }else{
+        getPost();
+      } else {
         console.log(response.message);
       }
     } catch (error) {
@@ -55,6 +59,7 @@ const Home = () => {
       );
       if (response.data.success) {
         console.log("Success");
+        getPost();
         handleOption();
       } else {
         console.log("failed");
@@ -74,6 +79,7 @@ const Home = () => {
         }
       );
       if (response.data.success) {
+        getPost();
         handleOption();
       } else {
         console.log(response.message);
@@ -84,8 +90,7 @@ const Home = () => {
   };
   useEffect(() => {
     getPost();
-  }, [follow, unfollow, Delete]);
-
+  }, []);
 
   const onRefresh = async () => {
     setRefresh(true);
@@ -97,7 +102,17 @@ const Home = () => {
       <FlatList
         data={posts}
         keyExtractor={(item) => item._id}
-        renderItem={({ item }) => <PostsCards Delete= {Delete} follow={follow} unfollow={unfollow} user= {user} items={item} />}
+        renderItem={({ item }) => (
+          <PostsCards
+            Delete={Delete}
+            follow={follow}
+            unfollow={unfollow}
+            option={option}
+            handleOption={handleOption}
+            user={user}
+            items={item}
+          />
+        )}
         ListHeaderComponent={() => (
           <View className="my-6 px-2">
             <View className="justify-between items-start flex-row mb-6">
@@ -106,7 +121,7 @@ const Home = () => {
                   Welcome Back
                 </Text>
                 <Text className="font-psemibold text-2xl text-primary">
-                 {user?.username}
+                  {user?.username}
                 </Text>
               </View>
               <View className="mt-1.5">
